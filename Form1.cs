@@ -25,10 +25,18 @@ namespace WindowsFormsApplication1
         {
             foreach (string word in s)
             {
-                if (word[0]==textBox1.Text[textBox2.Text.Length] && textBox1.Text != "" && !textBox2.Text.Contains(word))
+                if (textBox1.Text != "")
                 {
-                    textBox2.Text += Environment.NewLine + $"{textBox1.Text[textBox2.Text.Length]} {word}";
+                    if (word[0] == textBox1.Text[textBox1.Text.Length - 1] && !textBox2.Text.Contains(word))
+                    {
+                        textBox2.Text += Environment.NewLine + $"{textBox1.Text[textBox1.Text.Length - 1]} {word}";
+                        break;
+                    }
                 }
+                else
+                {
+                    textBox2.Text = "";
+                }                
             }
         }
     }
