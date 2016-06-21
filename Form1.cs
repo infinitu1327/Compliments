@@ -21,23 +21,25 @@ namespace WindowsFormsApplication1
             s = File.ReadAllLines("words.txt");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            foreach (string word in s)
+            textBox2.Text = "";
+            foreach (char letter in textBox1.Text)
             {
-                if (textBox1.Text != "")
+                foreach (string word in s)
                 {
-                    if (word[0] == textBox1.Text[textBox1.Text.Length - 1] && !textBox2.Text.Contains(word))
+                    if (word[0] == letter && !textBox2.Text.Contains(word))
                     {
-                        textBox2.Text += Environment.NewLine + $"{textBox1.Text[textBox1.Text.Length - 1]} {word}";
+                        textBox2.Text += Environment.NewLine + $"{letter.ToString().ToUpper()} {word}";
                         break;
                     }
                 }
-                else
-                {
-                    textBox2.Text = "";
-                }                
-            }
+            }            
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(textBox2.Text);
         }
     }
 }
